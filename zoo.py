@@ -718,13 +718,16 @@ class Sam3Model(Model, SupportsGetItem, TorchModelMixin):
         Embed a single image using SAM3 vision encoder.
         
         Args:
-            item: Image path string or FiftyOne sample/reader object
+            item: Dict from GetItem, image path string, or FiftyOne sample/reader object
             
         Returns:
             numpy array: 1D embedding vector of shape (1024,)
         """
         # Load image
-        if isinstance(item, str):
+        if isinstance(item, dict):
+            # Item from GetItem DataLoader - already has PIL Image
+            image = item['image']
+        elif isinstance(item, str):
             image = Image.open(item).convert("RGB")
         elif hasattr(item, 'filepath'):
             image = Image.open(item.filepath).convert("RGB")

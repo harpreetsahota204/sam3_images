@@ -5,18 +5,19 @@
         {
             "base_name": "facebook/sam3",
             "base_filename":"sam3",
-            "author": "Google",
-            "license": "Apache-2.0",
+            "author": "Meta AI",
+            "license": "SAM License",
             "source": "https://huggingface.co/facebook/sam3",
-            "description": "SigLIP 2 extends the pretraining objective of SigLIP with prior, independently developed techniques into a unified recipe, for improved semantic understanding, localization, and dense features.",
+            "description": "SAM3 (Segment Anything Model 3) performs promptable segmentation on images using text or visual prompts. Supports concept segmentation (find all instances), visual segmentation (specific instances), automatic segmentation, and visual embeddings.",
             "tags": [
                 "embeddings",
                 "torch",
-                "clip",
                 "zero-shot",
                 "segmentation",
                 "segment-anything",
-                "detections"
+                "detections",
+                "instance-segmentation",
+                "visual-prompting"
             ],
             "date_added": "2025-11-19",
             "requirements": {

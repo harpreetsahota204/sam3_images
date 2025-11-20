@@ -4,6 +4,15 @@
 
 Integration of Meta's [SAM3 (Segment Anything Model 3)](https://huggingface.co/facebook/sam3) into FiftyOne, with full batching support and visual embeddings.
 
+# ⚠️ Make sure you request access to the model
+
+sam3 is a gated model, so you will need to [request access from the model card](https://huggingface.co/facebook/sam3).
+
+Once you have done that you will need to ensure that your [Hugging Face Token](https://huggingface.co/docs/hub/en/security-tokens) is set.
+
+You can do that by opening the terminal and running `hf auth login`.
+
+
 ## Features
 
 ✅ **Three Segmentation Operations**

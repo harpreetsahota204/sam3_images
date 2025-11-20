@@ -48,6 +48,18 @@ foz.register_zoo_model_source(
 model = foz.load_zoo_model("facebook/sam3")
 ```
 
+## Quick Start Notebook
+
+Try it instantly in Google Colab:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/harpreetsahota204/sam3_images/blob/main/sam3_quickstart.ipynb)
+
+The notebook covers:
+- ✅ Visual embeddings & similarity search
+- ✅ Concept segmentation (single & multi-concept)
+- ✅ Visual segmentation with existing detections
+- ✅ Automatic segmentation with quality filtering
+
 ## Parameters
 
 ### Model Parameters

@@ -195,6 +195,20 @@ class Sam3Model(Model, SupportsGetItem, TorchModelMixin):
         self.model.eval()
         logger.info("SAM3 model loaded successfully")
     
+
+    def __enter__(self):
+        """Context manager entry."""
+        return self
+    
+    def __exit__(self, *args):
+        """Context manager exit - clear GPU memory cache."""
+        # Clear cache based on device type (don't move model to CPU)
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+            torch.mps.empty_cache()
+        return False
+        
     # ==================== OPERATION PROPERTIES ====================
     
     @property

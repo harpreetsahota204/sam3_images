@@ -1,36 +1,51 @@
-# SAM3 for FiftyOne
+# SAM3 Segment Plugin for FiftyOne
+
+Integration of Meta's SAM3 (Segment Anything Model 3) into FiftyOne, with full batching support and visual embeddings.
 
 ![image](sam3_images.gif)
 
-Integration of Meta's [SAM3 (Segment Anything Model 3)](https://huggingface.co/facebook/sam3) into FiftyOne, with full batching support and visual embeddings.
+## Overview
 
-# ⚠️ Make sure you request access to the model
+The SAM3 segment plugin brings Meta's powerful Segment Anything Model 3 to FiftyOne, providing advanced visual segmentation tools for computer vision workflows. Whether you need to install Segment Anything Model for interactive segmentation or extract visual embeddings for similarity search, this plugin delivers production-ready segmentation capabilities with full batching support.
 
-sam3 is a gated model, so you will need to [request access from the model card](https://huggingface.co/facebook/sam3).
+## Make sure you request access to the model
+
+To install Segment Anything Model 3, sam3 is a gated model, so you will need to [request access from the model card](https://huggingface.co/facebook/sam3).
 
 Once you have done that you will need to ensure that your [Hugging Face Token](https://huggingface.co/docs/hub/en/security-tokens) is set.
 
 You can do that by opening the terminal and running `hf auth login`.
 
-
 ## Features
 
-✅ **Three Segmentation Operations**
+### Three Segmentation Operations
 
-- **Concept Segmentation**: Find ALL matching instances using text prompts
+- **Concept Segmentation**: Find ALL matching instances using text prompts. Useful for automated dataset labeling and visual segmentation at scale.
 
-- **Visual Segmentation**: Segment SPECIFIC instances using interactive prompts (boxes/points)
+- **Visual Segmentation**: Segment SPECIFIC instances using interactive prompts (boxes/points). Useful for refining existing detections with precise visual segmentation tools.
 
-- **Automatic Segmentation**: Generate all masks without prompts (with quality filtering & deduplication)
+- **Automatic Segmentation**: Generate all masks without prompts (with quality filtering & deduplication). Useful for automatic data augmentation and exploratory analysis (includes quality filtering & deduplication).
 
-✅ **Visual Embeddings**
+### Visual Embeddings
+
 - Extract 1024-dim visual embeddings for similarity search
 - Three pooling strategies: mean, max, cls
 - Independent of text prompts
 
-## Installation
+## Use cases for SAM3 Segment Plugin
 
-**⚠️ Important:** SAM3 is brand new and requires transformers from source (not yet on PyPI):
+This segment plugin excels across multiple computer vision applications:
+
+- **Medical Imaging**: Automatic data augmentation for 3D medical image segmentation workflows, supporting radiology and pathology imaging workflows
+- **Autonomous Vehicles & Robotics**: Real-time visual segmentation tools for object detection, scene understanding, and navigation
+- **Manufacturing & Quality Control**: Defect detection and inspection using concept-based segmentation
+- **Agriculture & Precision Farming**: Crop health monitoring, plant disease identification, and yield prediction with text prompts
+
+The plugin's flexible architecture supports both interactive visual segmentation tools for precision work and fully automated segmentation for large-scale data processing.
+
+## How to Install Segment Anything Model 3 (SAM3)
+
+**Important:** To install Segment Anything Model 3, SAM3 it is brand new since it was recently released, it and requires transformers from source (not yet on PyPI):
 
 ```bash
 # Install transformers from source
@@ -64,10 +79,10 @@ Try it instantly in Google Colab:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/harpreetsahota204/sam3_images/blob/main/sam3_quickstart.ipynb)
 
 The notebook covers:
-- ✅ Visual embeddings & similarity search
-- ✅ Concept segmentation (single & multi-concept)
-- ✅ Visual segmentation with existing detections
-- ✅ Automatic segmentation with quality filtering
+- Visual embeddings & similarity search
+- Concept segmentation (single & multi-concept)
+- Visual segmentation with existing detections
+- Automatic segmentation with quality filtering
 
 ## Parameters
 
@@ -378,7 +393,7 @@ dataset.apply_model(
 # - ["cat", "dog", "bird"] (list - finds all three in that image, 3x slower)
 ```
 
-### Batching Limitations
+### Batching Limitations for visual segmentation tools
 
 **Visual Segmentation**: SAM3 Tracker cannot batch images with different numbers of prompts (boxes/points). The model automatically falls back to sequential processing when this occurs.
 
@@ -391,7 +406,7 @@ dataset.apply_model(model, prompt_field="single_box", batch_size=16)
 dataset.apply_model(model, prompt_field="multi_box", batch_size=16)
 ```
 
-**Concept Segmentation**: No batching limitations - handles variable prompts naturally.
+**Concept Segmentation**: No batching limitations - the segment plugin handles variable prompts naturally.
 
 ## Model Details
 
